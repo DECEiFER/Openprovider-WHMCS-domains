@@ -66,7 +66,7 @@ class RenewHookController extends BasePermissionController
 
         if ($this->checkIsNotOpenprovider($domain) == false) // It is an openprovider domain. Skip this one.
         {
-            return true;
+            return array();
         }
 
         // Check if the domain is scheduled for a transfer.
@@ -92,7 +92,7 @@ class RenewHookController extends BasePermissionController
             try {
                 $openprovider_domain = $this->openProvider->api->modifyScheduledTransferDate($openprovider_api_domain, date("Y-m-d H:i:s"));
             } catch (\Exception $ex) {
-                return false;
+                return array();
             }
 
             return array (
@@ -100,7 +100,7 @@ class RenewHookController extends BasePermissionController
             );
         }
 
-        return false;
+        return array();
     }
 
     /**
