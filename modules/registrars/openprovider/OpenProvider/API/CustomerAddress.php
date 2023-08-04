@@ -36,7 +36,7 @@ class CustomerAddress extends \OpenProvider\API\AutoloadConstructor
         try {
             $splitAddress = AddressSplitter::splitAddress($fullAddress);
             $housenumber = $splitAddress['houseNumberParts']['base'];
-            $convertedAddress = $splitAddress['streetName'] . ' ' . $splitAddress['additionToAddress2'];
+            $convertedAddress = $splitAddress['streetName'] . ($splitAddress['additionToAddress2'] ? "" : $splitAddress['additionToAddress2']);
 
             $this->street   =   $convertedAddress;
             $this->number   =   $housenumber;
